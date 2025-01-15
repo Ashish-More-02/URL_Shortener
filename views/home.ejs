@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        body{
+            background-color: rgb(255, 249, 237);
+            text-align: center;
+        }
+
+        form{
+            display: flex;
+            font-size: 1.4rem;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 60%;
+            margin: auto;
+        }
+        input{
+            font-size: 1.4rem;
+            padding: 5px 20px;
+            width: 40%;
+        }
+        button{
+            padding: 5px 20px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+        }
+        
+        table {
+            border: 2px solid black;
+            padding: 5px;
+        }
+
+        td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        th {
+            font-size: 1.2rem;
+        }
+
+        .table-cnt{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* height: 400px; */
+            overflow-y: scroll;
+            /* padding-top: 70px; */
+            width: fit-content;
+            margin: auto;
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+
+        .styled-table tbody tr.active-row {
+            font-weight: 550;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Homepage for URL shortner</h1>
+    <% if (locals.id) { %>
+        <p>URL Generated : http://localhost:8001/url/<%= id %>
+        </p>
+        <% } %>
+            <form method="POST" action="/url">
+                <label>Enter Your original URL</label>
+                <!-- name is very imp int input feild as it is sent to backend along with its value -->
+                <input type="text" placeholder="http://example.com" name="myUrl">
+                <button type="submit"> Generate </button>
+            </form>
+
+            <h1>Analytics</h1>
+            <div class="table-cnt">
+                <% if (locals.urls) { %>
+                    <table class="styled-table">
+                        <thead>
+                            <th>Sr.no</th>
+                            <th>shortId</th>
+                            <th>redirectURL</th>
+                            <th>sharable_link</th>
+                            <th>No_of_clicks</th>
+                        </thead>
+                        <tbody>
+                            <% urls.forEach((element,index)=> { %>
+                                <tr class="active-row">
+                                    <td>
+                                        <%= index +1 %>
+                                    </td>
+                                    <td>
+                                        <%= element.shortId %>
+                                    </td>
+                                    <td>
+                                        <%= element.redirectURL %>
+                                    </td>
+                                    <td>
+                                        <%= "http://localhost:8001/url/" +element.shortId %>
+                                    </td>
+                                    <td>
+                                        <%= element.visitHistory.length %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                    <% } %>
+            </div>
+</body>
+
+</html>

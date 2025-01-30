@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(255, 249, 237);
+            ;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 50%;
+            height: 80vh;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: rgb(221, 221, 221);
+            border-radius: 30px;
+        }
+
+        form div input,
+        label {
+            font-size: 24px;
+        }
+
+        form div input {
+            padding: 10px 8px;
+            border-radius: 10px;
+        }
+
+        form button {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 4px 16px;
+            cursor: pointer;
+            background-color: #009879;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 20px;
+        }
+
+        .links ul {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .links ul li {
+            margin: 0px 10px;
+            font-size: 20px;
+            list-style: none;
+            cursor: pointer;
+            background-color: #89decd;
+            padding: 5px 10px;
+            border-radius: 10px;
+            transition: all;
+            transition-duration: 0.2s;
+            border: 1px solid black;
+        }
+
+        .links ul li:hover {
+            background-color: #91b8b0;
+        }
+
+        .links ul a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+        <h1>URL shortner</h1>
+        <div class="links">
+            <ul>
+                <a href="/">
+                    <li>Home</li>
+                </a>
+                <a href="/login">
+                    <li>Login</li>
+                </a>
+                <a href="/signup">
+                    <li>Sign up</li>
+                </a>
+            </ul>
+        </div>
+
+    </div>
+    <h1>Signup page</h1>
+    <form action="/user" method="post">
+        <div>
+            <label for="name">Name : </label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <label for="email">Email :</label>
+            <input type="text" id="email" name="email">
+        </div>
+        <div>
+            <label for="pass">Password :</label>
+            <input type="text" id="pass" name="password">
+        </div>
+        <button type="submit">Sign up</button>
+    </form>
+</body>
+
+</html>

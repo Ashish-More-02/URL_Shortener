@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-
-        *{
+        * {
             font-family: Arial, Helvetica, sans-serif;
-            
+
         }
-        body{
+
+        body {
             background-color: rgb(255, 249, 237);
             text-align: center;
         }
 
-        form{
+        form {
             display: flex;
             font-size: 1.4rem;
             align-items: center;
@@ -24,17 +24,19 @@
             width: 60%;
             margin: auto;
         }
-        input{
+
+        input {
             font-size: 1.4rem;
             padding: 5px 20px;
             width: 40%;
         }
-        button{
+
+        button {
             padding: 5px 20px;
             font-size: 1.2rem;
             border-radius: 10px;
         }
-        
+
         table {
             border: 2px solid black;
             padding: 5px;
@@ -49,7 +51,7 @@
             font-size: 1.2rem;
         }
 
-        .table-cnt{
+        .table-cnt {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -98,11 +100,60 @@
             font-weight: 550;
 
         }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 20px;
+        }
+
+        .links ul {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .links ul li {
+            margin: 0px 10px;
+            font-size: 20px;
+            list-style: none;
+            cursor: pointer;
+            background-color: #89decd;
+            padding: 5px 10px;
+            border-radius: 10px;
+            transition: all;
+            transition-duration: 0.2s;
+            border: 1px solid black;
+        }
+
+        .links ul li:hover {
+            background-color: #91b8b0;
+        }
+
+        .links ul a {
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Homepage for URL shortner</h1>
+    <div class="heading">
+        <h1>Homepage for URL shortner</h1>
+        <div class="links">
+            <ul>
+                <a href="/">
+                    <li>Home</li>
+                </a>
+                <a href="/login">
+                    <li>Login</li>
+                </a>
+                <a href="/signup">
+                    <li>Sign up</li>
+                </a>
+            </ul>
+        </div>
+
+    </div>
     <% if (locals.id) { %>
         <p>URL Generated : http://localhost:8001/url/<%= id %>
         </p>

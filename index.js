@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const urlRoute = require("./routes/url"); // router
 const URL = require("./models/url");
 const path = require("path");
+const urlRoute = require("./routes/url"); // router
 const staticRoute = require("./routes/staticRouter");
+const userRoute = require("./routes/user");
 require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const { restrictToLoggedinUserOnly,checkAuth } = require("./middleware/auth");
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -21,10 +24,14 @@ app.set("views", path.resolve("./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
 
 // url is the base route ,and all the other routes will work after it
-app.use("/url", urlRoute);
-app.use("/", staticRoute);
+app.use("/url",restrictToLoggedinUserOnly, urlRoute);
+app.use("/user", userRoute);
+app.use("/", checkAuth,staticRoute);
 
 // redirection logic and updating anlytics
 app.get("/url/:shortid", async (req, res) => {
